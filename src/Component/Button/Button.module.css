@@ -1,0 +1,33 @@
+.button {
+    border: 1px solid #34a853;
+    background: #34a853;
+    width: 400px;
+    color: white;
+    padding: 20px;
+    transition: background .4s linear;
+    margin-bottom: 10px;
+}
+
+.button:hover {
+    animation: sideways;
+    animation-iteration-count: 1;
+    animation-duration: .1s;
+    border: 1px solid #4285f4;
+    background: #4285f4;
+}
+
+@keyframes sideways {
+    0% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+
+        transform: translateX(0px);
+    }
+
+    100% {
+
+        transform: translateX(5px);
+    }
+}

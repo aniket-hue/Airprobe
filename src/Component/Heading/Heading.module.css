@@ -1,0 +1,17 @@
+.Heading {
+    font-family: 'Dancing Script', cursive;
+    margin: 20px 0 20px 0;
+    width: 100%;
+    font-size: 130px;
+    color: rgb(234, 67, 53);
+    text-shadow: -2px -2px 0 rgb(255, 255, 255), 1px -1px 0 rgb(255, 255, 255), -1px 1px 0 rgb(255, 255, 255), 1px 1px 0 rgb(255, 255, 255);
+    transition: .3s linear;
+}
+
+div {
+    align-self: center;
+}
+
+.Heading:hover {
+    font-size: 120px;
+}

@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { Route } from 'react-router'
+import Login from './Pages/Login/Login';
+import Signup from './Pages/Signup/Signup';
+import Dashboard from './Pages/Dashboard/Dashboard'
+import { connect } from 'react-redux';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    render() {
+        return (
+            <div style={{ display: "inline-block" }}>
+                {!this.props.currentUser && <Route exact path='/' component={Login} />}
+                {!this.props.currentUser && <Route exact path='/signup' component={Signup} />}
+                {this.props.currentUser && <Route exact path='/dashboard' component={Dashboard} />}
+            </div>
+        )
+    }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+    currentUser: state.user.currentUser
+})
+
+export default connect(mapStateToProps)(App);

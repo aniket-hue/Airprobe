@@ -1,0 +1,2 @@
+export const min_length = (value) => (value.length >= 8 && (value && /[^a-zA-Z0-9 ]/i.test(value)))
+export const email_validate = (value) => new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(value)
