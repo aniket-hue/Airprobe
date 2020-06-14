@@ -1,6 +1,9 @@
 import React from 'react'
 import classes from './Heading.module.css'
 
+
+//Custom heading component 
+
 const heading = (props) => {
     return (
         <div>

@@ -8,12 +8,18 @@ import Input from '../../Component/Input/Input';
 import Submit from '../../Component/Submit/Submit'
 import Button from '../../Component/Button/Button';
 import Heading from '../../Component/Heading/Heading'
+import sha256 from 'crypto-js/sha256';
+
 
 const Login = (props) => {
 
-
     const onChangeHandle = (e) => {
+        /** 
+            * onChangeHandle will trigger whenever the input value of form changes.
+            * As soon as value is typed the value is stored in the redux state instantly/
+        **/
         e.preventDefault();
+
         switch (e.target.name) {
             case 'email':
                 props.setEmail(e.target.value)
@@ -28,12 +34,29 @@ const Login = (props) => {
 
     const onSubmitHandle = (event) => {
         event.preventDefault();
+
+        /**
+         * This will get triggered when submit button of the form is clicked 
+         * In this function the password(value) and email(key) entered will be checked whether
+         * they are correctly mapped in the local storage
+         */
+
         if (!min_length(props.password) || !email_validate(props.email))
-            alert("Password must consists of atleast 8 characters and must contain at least 1 numeric");
+            // Email and password validation case
+            alert("Password must consists of atleast 8 characters and must contain at least 1 special character");
         else {
-            if (localStorage.getItem(props.email)) {
-                const local_password = localStorage.getItem(props.email);
-                if (props.password === local_password) {
+            /** 
+             * In the local storage the data is stored as key value pairs
+             * same as HashMap. So in local storage to store the user credentials
+             * email is used as a key and their password as value.
+             * So whenever user enters email(key) and password(value) 
+             * his/her we retrieve the password(value) of email(key) from local storage if it exists,
+             * and validate.
+             */
+            if (localStorage.getItem(sha256(props.email))) {
+                const local_password = localStorage.getItem(sha256(props.email));
+             
+                if (sha256(props.password).toString() === local_password) {
                     props.setEmail('')
                     props.setPassword('')
                     props.setUser()

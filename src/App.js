@@ -9,8 +9,14 @@ class App extends Component {
     render() {
         return (
             <div style={{ display: "inline-block" }}>
+
+                {/* The ternary operator is used to prevent the user 
+                go to the login page and signup page after when the user is logged in */}
+
                 {!this.props.currentUser && <Route exact path='/' component={Login} />}
                 {!this.props.currentUser && <Route exact path='/signup' component={Signup} />}
+
+                {/* This will prevent user to go to Dashboard without logging in */}
                 {this.props.currentUser && <Route exact path='/dashboard' component={Dashboard} />}
             </div>
         )

@@ -9,3 +9,14 @@ export default combineReducers(
         user: currentUserReducer
     }
 );
+
+/**
+ * -----State of login-----
+ * email, password
+ * 
+ * -----State of signup-----
+ * signUpemail, signUppassword, confirmPassword, name
+ * 
+ * -----State of user-----
+ * currentUser
+ */

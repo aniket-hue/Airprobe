@@ -5,12 +5,18 @@ import classes from './Signup.module.css';
 import { setSEmail, setSPassword, setConfirmPassword, setName } from '../../Redux/Reducer/Signup/signupAction';
 import { connect } from 'react-redux';
 import { min_length, email_validate } from '../../auth_utility';
-import Heading from '../../Component/Heading/Heading'
+import Heading from '../../Component/Heading/Heading';
+import sha256 from 'crypto-js/sha256';
 
 const Signup = (props) => {
-    console.log(props)
 
     const onSignupChangeHandle = (e) => {
+
+        /**
+         * When the registration form sign up button is pressed 
+         * this function will get triggered.
+         * 
+         */
         switch (e.target.name) {
             case 'name':
                 props.setName(e.target.value)
@@ -30,8 +36,15 @@ const Signup = (props) => {
     }
 
     const onSubmitHandle = (event) => {
-        console.log(props)
         event.preventDefault();
+
+        /**
+         * localStorage.setItem('key','value') this call will store the key and the value mapped to a key
+         * so, email is used as a key and password as a value
+         * After validation the value is stored in a local storage and user is redirected to login
+         * page
+         */
+
         if (!email_validate(props.email) ||
             !min_length(props.password) ||
             !(props.password === props.confirmPassword))
@@ -39,7 +52,7 @@ const Signup = (props) => {
         else if (localStorage.getItem(props.email))
             alert("Email Exists");
         else {
-            localStorage.setItem(props.email, props.password)
+            localStorage.setItem(sha256(props.email), sha256(props.password))
             alert('You may now Log-In')
             props.setEmail('')
             props.setConfirmPassword('')

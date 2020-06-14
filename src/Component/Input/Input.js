@@ -1,5 +1,7 @@
 import React from 'react'
 import classes from './Input.module.css'
+
+//Custom form input component
 const Input = (props) => {
     return (
         <div className={classes.wrapper}>

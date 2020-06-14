@@ -1,3 +1,4 @@
+
 export const setName = value => ({
     type: 'SET_NAME',
     payload: value
